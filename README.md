@@ -8,10 +8,10 @@ The idea is that I record some commonly used long prompts in a documented way. A
 
 You'll need a prompt first. According to the nature of the prompt, you might need an extra input file. 
 
-* You need to create a .env file in your folder and add your open api secret key using the format
+* You need to create a .env file in your folder and add your open api secret key using the format</br>
 OPENAI_API_KEY=your_api_key
 
-* create a config.py file in root directory and insert the following to really connect to chatgpt
+* create a config.py file in root directory and insert the following to really connect to chatgpt</br>
 USE_OPENAI_API = True  # Set to False to use mock responses
 
 ```bash
