@@ -7,6 +7,8 @@ The idea is that I record some commonly used long prompts in a documented way. A
 ## Installation
 
 You'll need a prompt first. According to the nature of the prompt, you might need an extra input file. 
+You need to create a .env file in your folder and add your open api secret key using the format
+OPENAI_API_KEY=your_api_key
 
 ```bash
 pip install -r requirements.txt
