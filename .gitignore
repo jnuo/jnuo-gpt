@@ -68,3 +68,6 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+
+# Data I want to keep local
+data/output.txt

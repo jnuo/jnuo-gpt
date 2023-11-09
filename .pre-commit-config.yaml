@@ -1,0 +1,15 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        stages: [commit]
+    -   id: requirements
+        name: update-requirements
+        entry: pip freeze > requirements.txt
+        language: system
+        files: ^src/
+        stages: [commit]

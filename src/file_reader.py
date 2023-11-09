@@ -3,7 +3,7 @@ import os
 def write_to_new_file(input_file, output_file_base):
     # Check if the base output file exists and create a new name with increment if it does
     directory = os.path.dirname(output_file_base)
-    if not os.path.exists(directory):
+    if directory and not os.path.exists(directory):
         os.makedirs(directory)
 
     output_file = output_file_base
