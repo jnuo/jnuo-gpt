@@ -1,26 +1,41 @@
 import os
-from src.file_reader import write_to_new_file
+import tempfile
+import pytest
+from src.file_reader import read_file, write_to_file
 
-def test_write_to_new_file():
-    # Setup: Create a dummy input file
-    input_content = 'Hello, World!'
-    input_file = 'test_input.txt'
-    with open(input_file, 'w') as f:
-        f.write(input_content)
+def test_read_file():
+    # Create a temporary file with some content
+    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        tmp.write(b"Hello, World!")
+        tmp_filename = tmp.name
 
-    # Define the base name for the output file
-    output_file_base = 'test_output.txt'
+    # Read the content using read_file function
+    content = read_file(tmp_filename)
 
-    # Execute: Call the function to test
-    output_file = write_to_new_file(input_file, output_file_base)
+    # Clean up the temporary file
+    os.remove(tmp_filename)
 
-    # Verify: Check if the output file contains the expected content
-    with open(output_file, 'r') as f:
-        output_content = f.read()
-    assert output_content == input_content, "Output content should match input content"
+    # Assert the content read is correct
+    assert content == "Hello, World!", "The content read should match the content written."
 
-    # Cleanup: Remove the test input and output files
-    os.remove(input_file)
-    os.remove(output_file)
+def test_write_to_file():
+    # Create a temporary directory
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        base_filename = os.path.join(tmp_dir, "test_output.txt")
+        content_to_write = "Hello, World!"
 
-# You might want to add more tests to check for edge cases, errors, etc.
+        # Write the content using write_to_file function
+        output_file = write_to_file(base_filename, content_to_write)
+
+        # Check the file exists
+        assert os.path.exists(output_file), "The output file should exist."
+
+        # Read the content back
+        with open(output_file, 'r') as file:
+            content = file.read()
+
+        # Assert the content written is correct
+        assert content == content_to_write, "The content written should match the content read back."
+
+if __name__ == "__main__":
+    pytest.main()

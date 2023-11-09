@@ -70,6 +70,9 @@ instance/
 docs/_build/
 
 # Data I want to keep local
-data/output.txt
 .env
 config.py
+data/output*
+data/job-post.txt
+data/your-job-xp.txt
+test_*
