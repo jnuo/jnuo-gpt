@@ -2,9 +2,11 @@
 
 Playground for what I can do with this pf.
 
+The idea is that I record some commonly used long prompts in a documented way. Also maybe add some extra input information to the prompt, and easily ask chatgpt the same question without typing the same prompt over and over again in a text editor, and of course later, to record the output in an output.txt file.
+
 ## Installation
 
-A step by step series of examples that tell you how to get a development environment running.
+You'll need a prompt first. According to the nature of the prompt, you might need an extra input file. 
 
 ```bash
 pip install -r requirements.txt
