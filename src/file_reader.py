@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 def read_file(input_file):
     """Reads content from a file and returns it."""
@@ -23,14 +24,26 @@ def write_to_file(output_file_base, content):
     
     return output_file
 
-# Example usage:
-if __name__ == "__main__":
-    input_filename = 'path_to_your_input_file.txt'  # Replace with your actual input file path
-    output_filename_base = 'path_to_your_output_file.txt'  # Replace with your desired output file base path
+def read_excel_to_df(file_path):
+    """
+    Reads an Excel file into a pandas DataFrame.
     
-    # Read content from the input file
-    file_content = read_file(input_filename)
+    Parameters:
+    - file_path: str, the path to the Excel file.
+    
+    Returns:
+    - df: DataFrame, the data read from the Excel file.
+    """
+    df = pd.read_excel(file_path)
+    return df
 
-    # Write content to a new output file
-    new_output_file = write_to_file(output_filename_base, file_content)
-    print(f"Content written to {new_output_file}")
+def write_df_to_excel(df, file_path):
+    """
+    Writes a pandas DataFrame to an Excel file, overwriting any existing file content.
+    
+    Parameters:
+    - df: DataFrame, the DataFrame to write to the Excel file.
+    - file_path: str, the path to the Excel file.
+    """
+    with pd.ExcelWriter(file_path, mode='w', engine='openpyxl') as writer:
+        df.to_excel(writer, index=False)
